@@ -8,7 +8,7 @@ import numpy
 from  scipy import *
 
 def mydot(a,b):
-    return dot(a,b)
+    return dot(a,b)+a
 
 if __name__ == '__main__':
     a = array([[1,2],[3,4]])
