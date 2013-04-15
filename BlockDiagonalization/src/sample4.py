@@ -34,11 +34,11 @@ print bd.eigenvalues1(x1)
 x1 = rm(pi/4)
 eg = np.linalg.eig(x1)
 el = eg[0]
-ev = eg[1]
+ev = np.matrix(eg[1]).T
 print "x",np.around(x1,decimals=3)
 print "el",np.around(np.matrix(el),decimals=3)
 print "ev",ev
-print "diag?",np.around(np.dot(ev.H,np.dot(x1,ev)),decimals=3)
+print "diag?",np.around(np.dot(ev,np.dot(x1,ev.T)),decimals=3)
 print "orthogonal?", np.around(np.dot(ev.H,ev),decimals=3)
 print "ev[0].x1",np.dot(ev[0],x1)
 print "ev[0]",ev[0]
