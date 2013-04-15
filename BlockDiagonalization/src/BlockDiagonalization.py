@@ -48,13 +48,17 @@ def eigenvectors1(m):
     eg = np.linalg.eig(m)
     ev = eg[0]
     sl = split1(perm1(ev))
-    evc= eg[1]
-    ev0 = map(lambda x:[evc[x].real,evc[x].imag],sl[0])
-    ev1 = map(lambda x:evc[x],sl[1])
-    return reduce(lambda a,b:a+b,ev0,[])+ev1
-    
-    
+    evc= eg[1].T
+    ev0 = map(lambda x:evc[x].real.tolist()+evc[x].imag.tolist(),sl[0])
+    ev1 = map(lambda x:evc[x].tolist(),sl[1])
+    return np.matrix(reduce(lambda a,b:a+b,ev0,[])+reduce(lambda a,b:a+b,ev1,[])).T
 
+def diag1(l):
+    sl=l[0]
+    ol=l[1]
+    ml=map(lambda x:matrix([[cos(x),-sin(x)],[sin(x),cos(x)]]),sl)
+    nl=map(lambda x:matrix([[x]]),ol)
+    
 if __name__ == '__main__':
     a = np.array([[1,2],[3,4]])
     b = np.array([[5,6],[7,8]])
